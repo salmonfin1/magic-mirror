@@ -1,0 +1,6 @@
+darwin:
+  token: 4bd156b9-ca11-4fab-97df-a5c0e78b111b
+server:
+  port: 8080
+weather:
+  token: 9b60e19c69e08780747192dab354f404
