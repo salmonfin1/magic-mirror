@@ -9,6 +9,9 @@ import com.spalmer.magicmirror.model.Weather
 import com.spalmer.magicmirror.model.WeatherResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.time.Instant
+import java.time.LocalDateTime
+import java.util.*
 
 @Component
 class WeatherService @Autowired constructor(var configuration: WeatherConfiguration) {
@@ -19,7 +22,13 @@ class WeatherService @Autowired constructor(var configuration: WeatherConfigurat
         val data = result.get()
         val mapper = jacksonObjectMapper()
         val weatherResponse: WeatherResponse = mapper.readValue(data)
-        return weatherResponse.list
+        val tomorrow = LocalDateTime.now().plusDays(1)
+        return weatherResponse.list.filter {
+            LocalDateTime.ofInstant(Instant.ofEpochSecond(it.dt), TimeZone.getDefault().toZoneId()).isAfter(tomorrow)
+
+        }
     }
+
+
 
 }

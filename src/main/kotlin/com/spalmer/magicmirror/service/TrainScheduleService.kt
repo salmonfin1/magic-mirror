@@ -19,6 +19,6 @@ class TrainScheduleService @Autowired constructor(var configuration: TokenConfig
         val data = result.get()
         val mapper = jacksonObjectMapper()
         val scheduleResponse: ScheduleResponse = mapper.readValue(data)
-        return scheduleResponse.schedules
+        return scheduleResponse.schedules.subList(0, 2)
     }
 }
