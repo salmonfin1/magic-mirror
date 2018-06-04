@@ -10,4 +10,6 @@ data class Schedule(@JsonProperty("std") val departureTime :String,
 
 
 
+
+
 }
